@@ -1,0 +1,27 @@
+<div id="maincontainer">
+<div id="phoneinput">
+    <input type="text" 
+       class="input" 
+       placeholder="Enter your task"
+       [(ngModel)]="phonenumber"/>
+    <button (click)="findPhoneNumbers()">Find Phone</button>
+</div>
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput type="text" (keyup)="applyFilter($event.target.value)" placeholder="Ph No.">
+  </mat-form-field>
+
+  <div id="phonelist" class="container">
+    <mat-table [dataSource]="phoneDatasource" matSort class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="listComb">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> AlphaNumericPhone </mat-header-cell>
+          <mat-cell *matCellDef="let listComb"> {{listComb}} </mat-cell>
+        </ng-container>
+      
+       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+</div>
